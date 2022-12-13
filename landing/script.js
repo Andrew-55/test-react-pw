@@ -31,23 +31,25 @@ const emersion = (block) => {
 emersion(warmingBlock);
 
 const onEntry = (entry) => {
-  const missionImage = document.querySelector('.mission__image');
-  const missionContent = document.querySelector('.mission__content');
+  if (window.innerWidth > 992) {
+    const missionImage = document.querySelector('.mission__image');
+    const missionContent = document.querySelector('.mission__content');
 
-  entry.forEach((change) => {
-    if (change.isIntersecting) {
-      missionImage.classList.add('animation-show');
-      missionContent.classList.add('animation-show');
-    } else {
-      missionImage.classList.remove('animation-show');
-      missionContent.classList.remove('animation-show');
-    }
-  });
+    entry.forEach((change) => {
+      if (change.isIntersecting) {
+        missionImage.classList.add('animation-show');
+        missionContent.classList.add('animation-show');
+      } else {
+        missionImage.classList.remove('animation-show');
+        missionContent.classList.remove('animation-show');
+      }
+    });
+  }
 };
 
 let options = {
-  threshold: [0.5],
+  threshold: [0.7],
 };
 let observer = new IntersectionObserver(onEntry, options);
-let element = document.querySelector('.start-animation');
+let element = document.querySelector('.mission');
 observer.observe(element);
